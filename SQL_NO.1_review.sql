@@ -26,7 +26,7 @@ WHERE salesRepEmployeeNumber IN ('1401', '1501');
 
 -- USA, France에 거주하지않는 고객의 이름(customerName), 도시(city), 휴대전화번호 추출(phone)
 
-SELECT customerName, country, city
+SELECT customerName, country, city, phone
 FROM customers
 WHERE country NOT IN ('USA', 'France');
 
@@ -48,8 +48,8 @@ WHERE customerName Like '%Co.';
 
 SELECT customerNumber, customerName
 FROM customers
-WHERE customerName LIKE '%[&]%';
-
+WHERE customerName LIKE '%&%';
+-- WHERE customerName LIKE '%[&]%';
 
 -- 고객의 카드한도(creditLimit) 비교
 
@@ -94,5 +94,9 @@ WHERE (shippedDate-orderDate)<=3;
 
 -- 제품번호(orderNumber), 주문일(orderDate), 배송일(shippedDate), 실제배송일(배송일-주문일), 상태 추출 (실제배송일의 컬럼명은 real_shipping_days로 작성)
 
-SELECT orderNumber, orderDate, shippedDate, (shippedDate-orderDate) AS real_shipping_days
+SELECT orderNumber
+	, orderDate
+	, shippedDate
+    , datediff(shippedDate, orderDate) AS real_shipping_days
 FROM orders
+WHERE datediff(shippedDate, orderDate) <= 3;
