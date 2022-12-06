@@ -9,7 +9,7 @@ USE 데이터베이스명;
 SHOW databases; 
 
 -- 테이블 생성 
-CREATE TABEL 테이블명 (
+CREATE TABLE 테이블명 (
     컬럼명 데이터타입 제약조건
     컬럼명 데이터타입 제약조건
     컬럼명 데이터타입 제약조건
@@ -19,6 +19,7 @@ CREATE TABEL 테이블명 (
 -- [Quiz]
 -- member라는 데이터베이스 생성하기 
 CREATE DATABASE member;
+
 
 
 
@@ -112,7 +113,7 @@ TRUNCATE TABLE 테이블명;
 DROP database member;
 
 -- customer 테이블 삭제
-DROP tables customer;
+DROP table customer;
 
 
 ---------------------------------------------------
@@ -283,7 +284,6 @@ WHERE publisher = '김영사' and author = '유발하라리';
  WHERE publisher = '김영사' or price >=20000;
 
 -- 작가의 이름이 마이클로 시작하는 책 제목, 작가 이름 추출
-
 SELECT name, author
 FROM bookstore
 WHERE author LIKE '마이클%'
@@ -334,7 +334,7 @@ WHERE author IN ('유발하라리', '한스로슬링');
 
 SELECT *
 FROM bookstore
-WHERE author NOT IN ('유발하라리', '한스로슬링');
+WHERE author NOT IN ('유발하라리', '한스로슬링')
 AND price <=20000;
 
 

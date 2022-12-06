@@ -61,8 +61,8 @@ CASE ~  WHEN 구문
 -- 가격의 범위 지정(0~9900, 10000~19900, ...)
 
 SELECT name, price
-		, CASE WHEN price Between 0 and 9900 THEN '1만원미안'
-				WHEN price between 10000 and 19900 THEN '만원 이상 ~ 2만원 미만'
+		, CASE WHEN price Between 0 and 9900 THEN '1만원미만'
+				WHEN price between 10000 and 19900 THEN '1만원 이상 ~ 2만원 미만'
                 WHEN price between 20000 and 29900 THEN '2만원 이상 ~ 3만원 미만'
                 WHEN price IS NULL THEN '해당없음'
                 ELSE '3만원 이상'
@@ -109,8 +109,8 @@ SELECT AVG(price) -- 20311.1111
 FROM bookstore
 
 SELECT name
-		,price
-        ,ROUND(ifnull(price, 20311.1111), 0) AS '도서가격'
+		, price
+        , ROUND(ifnull(price, 20311.1111), 0) AS '도서가격'
 FROM bookstore;
 
 -- 평균을 구한 뒤, 그 값을 가져와 대체하는 방식
@@ -277,7 +277,7 @@ GROUP BY publisher;
 SELECT publisher, sum(price) AS '도서금액 합계'
 FROM bookstore
 WHERE publisher IS NOT NULL
-GROUP BY publisher
+GROUP BY publisher;
 
 -- 출판사별로 도서의 가격의 합계가 높은 순으로 나열
 
@@ -378,7 +378,7 @@ FROM 테이블 2
 
 SELECT *
 FROM 테이블1
-UNION  -- 중복 제거
+UNION DISTINCT -- 중복 제거
 SELECT *
 FROM 테이블 2
 */
